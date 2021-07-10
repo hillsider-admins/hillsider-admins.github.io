@@ -1,0 +1,100 @@
+/*
+	title: CSS rules for www.hillsiders.org
+	author: Stephen Taylor sjt@hillsiders.org
+	date: 5 June 2020
+*/
+
+/* front page */
+@import url("reset.css");
+
+#banner {
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 35rem;
+	padding: 0rem 0;
+	background: url("../img/picnic.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-size: cover;
+}
+#title {
+	background: rgba(0,0,0,.75);
+	font-family: Optima, serif;
+	padding: 2rem;
+}
+#title h1 {
+	color: white;
+	font-size: 2rem;
+	text-align: left;
+	padding: .1em;
+}
+#title h2 {
+	color: white;
+	font-size: 1.4rem;
+	text-align: left;
+}
+
+/* typography */
+body {
+	background-color: #ffffee;
+	color: rgba(0,0,0,.7);
+	font-family: ETBembo, Baskerville, Garamond, 'Times New Roman', serif;
+	font-size: 18px;
+	line-height: 1.4rem;
+}
+h1, h2, h3, li {
+	color: #003300;
+	font-family: Optima, serif;
+	margin-bottom: .3em;
+}
+h1 {
+	font-size: 2rem;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+h2 {
+	font-size: 1.5rem;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+
+}
+ol, p, ul {
+	margin-bottom: .8em;
+}
+
+/* inline */
+a {
+	color: black;
+	font-weight: 600;
+	text-decoration: none;
+}
+em {
+	font-style: italic;
+}
+/* layout */
+p {
+	max-width: 40rem;
+}
+section {
+	border: .5px solid black;
+	padding: 1rem;
+}
+/*Parking suspensions*/
+#parking-suspensions {
+	font-size: .9em;
+	margin: 1em 0;
+}
+#parking-suspensions thead {
+	border-bottom: 1px solid rgba(0,0,0,.3);
+}
+#parking-suspensions th {
+	color: rgba(0,0,0,.5);
+	font-style: italic;
+	text-align: left;
+}
+#parking-suspensions td,
+#parking-suspensions th {
+	padding: 0.2em 1em;
+}
