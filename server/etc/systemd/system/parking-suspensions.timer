@@ -1,0 +1,11 @@
+[Unit]
+Description=Retrieve parking suspensions hourly 
+
+[Timer]
+OnUnitActiveSec=10
+OnUnitInactiveSec=3600
+Persistent=true
+Unit=parking-suspension.service
+
+[Install]
+WantedBy=default.target
