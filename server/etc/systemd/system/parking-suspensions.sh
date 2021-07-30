@@ -1,11 +1,12 @@
 #!/bin/bash
 # title: Retrieve parking suspensions as HTML pages from camden.gov.uk
 # author: Stephen Taylor
-# date: 11 Jun 2020
+# date: 30 Jul 2021
 # usage: run as root
 
 url="http://registers.camden.gov.uk/SuspendedBays/Suspensions.aspx"
 dest="/var/www/hillsiders.org/data"
+# dest="/Users/sjt/Projects/hillsiders/hillsiders.org/data"
 
 srcs=('NASSINGTON%20ROAD' 'PARLIAMENT%20HILL' 'SOUTH%20HILL%20PARK' 'TANZA%20ROAD')
 tgts=(nass phill south tanza)
@@ -17,7 +18,8 @@ for i in `seq 0 $lst`
 do
     echo ${srcs[$i]}
     tgt="$dest/${tgts[$i]}.html"
-    curl -s "$url?street=${srcs[$i]}" > $tgt
+    # curl -s "$url?street=${srcs[$i]}" > $tgt
+    curl -s "$url?street=${srcs[$i]}" | grep -h '<t[rd]>' > $tgt
     if [ $? -eq 0 ]
     then
         echo  "Created $tgt"
@@ -27,9 +29,6 @@ do
         exit 1
     fi
 done
-
-rm $dest/table.html
-grep -h '<t[rd]>' $dest/*.html > $dest/table.html
 
 if [ $? -eq 0 ]
 then

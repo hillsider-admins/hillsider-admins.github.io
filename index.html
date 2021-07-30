@@ -5,8 +5,17 @@
 	<link rel="stylesheet" type="text/css" href="style/styles.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
-		$($.get('/data/table.html', function( data ){
-			$("#from-camden").append( data ) 
+		$($.get('/data/nass.html', function( data ){
+			$("#nass").append( data ) 
+		}))
+		$($.get('/data/phill.html', function( data ){
+			$("#phill").append( data ) 
+		}))
+		$($.get('/data/south.html', function( data ){
+			$("#south").append( data ) 
+		}))
+		$($.get('/data/tanza.html', function( data ){
+			$("#tanza").append( data ) 
 		}))
 	</script>
 	<title>South Hillsiders – a London neighbourhood</title>
@@ -201,12 +210,37 @@
 
 		<div class="block">
 			<a name="parking"></a>
-			<table id="parking-suspensions">
 			<h2>Parking suspensions</h2>
+			<table class="parking-suspensions">
+				<caption>Parliament Hill</caption>
 				<thead>
 					<tr><th>reference</th><th>street</th><th>start</th><th>days</th><th>end</th><th>reason</th><th>location</th></tr>
 				</thead>
-				<tbody id="from-camden">
+				<tbody id="phill">
+				</tbody>
+			</table>
+			<table class="parking-suspensions">
+				<caption>Nassington Road</caption>
+				<thead>
+					<tr><th>reference</th><th>street</th><th>start</th><th>days</th><th>end</th><th>reason</th><th>location</th></tr>
+				</thead>
+				<tbody id="nass">
+				</tbody>
+			</table>
+			<table class="parking-suspensions">
+				<caption>South Hill Park</caption>
+				<thead>
+					<tr><th>reference</th><th>street</th><th>start</th><th>days</th><th>end</th><th>reason</th><th>location</th></tr>
+				</thead>
+				<tbody id="south">
+				</tbody>
+			</table>
+			<table class="parking-suspensions">
+				<caption>Tanza Road</caption>
+				<thead>
+					<tr><th>reference</th><th>street</th><th>start</th><th>days</th><th>end</th><th>reason</th><th>location</th></tr>
+				</thead>
+				<tbody id="tanza">
 				</tbody>
 			</table>
 		</div>
