@@ -7,7 +7,15 @@
 	<script type="text/javascript">
 		$($.get('/data/table.html', function( data ){
 			$("#from-camden").append( data ) 
-		}))
+		var seen = {};
+		$('#from-camden tr').each(function() {
+		    var txt = $(this).text();
+		    if (seen[txt])
+		        $(this).remove();
+		    else
+		        seen[txt] = true;
+		})		
+	        }))
 	</script>
 	<title>South Hillsiders – a London neighbourhood</title>
 </head>
