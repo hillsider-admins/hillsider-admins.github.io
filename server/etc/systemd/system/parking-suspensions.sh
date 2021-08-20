@@ -1,7 +1,7 @@
 #!/bin/bash
 # title: Retrieve parking suspensions as HTML pages from camden.gov.uk
 # author: Stephen Taylor
-# date: 20  Aug 2021
+# date: 20 Aug 2021
 # DRY: Don't Repeat Yourself
 # usage: run as root
 
