@@ -2,11 +2,10 @@ hillsiders.org
 ==============
 
 
-Source files for hillsiders.org.
+Source files for hillsiders.org website.
 
-The `server` folder holds source files for the daemon that scrapes Camden’s parking-suspensions pages.
+See the `server` repository for source files for the daemon that scrapes Camden’s parking-suspensions pages.
 
-The `site` folder holds the static HTML website.
 
 A project of the Hills Admins web team.
 

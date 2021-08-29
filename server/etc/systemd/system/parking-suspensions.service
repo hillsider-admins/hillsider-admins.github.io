@@ -1,6 +1,0 @@
-[Unit]
-Description=Retrieve parking suspensions as HTML pages from camden.gov.uk
-
-[Service]
-Type=oneshot
-ExecStart=/bin/bash /etc/systemd/system/parking-suspensions.sh
