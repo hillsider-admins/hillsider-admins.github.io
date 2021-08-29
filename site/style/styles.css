@@ -82,19 +82,19 @@ section {
 	padding: 1rem;
 }
 /*Parking suspensions*/
-.parking-suspensions {
+#parking-suspensions {
 	font-size: .9em;
 	margin: 1em 0;
 }
-.parking-suspensions thead {
+#parking-suspensions thead {
 	border-bottom: 1px solid rgba(0,0,0,.3);
 }
-.parking-suspensions th {
+#parking-suspensions th {
 	color: rgba(0,0,0,.5);
 	font-style: italic;
 	text-align: left;
 }
-.parking-suspensions td,
-.parking-suspensions th {
+#parking-suspensions td,
+#parking-suspensions th {
 	padding: 0.2em 1em;
 }
