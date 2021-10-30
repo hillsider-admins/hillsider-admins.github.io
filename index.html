@@ -23,8 +23,8 @@
 	<link rel="stylesheet" type="text/css" href="style/styles.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
-		$($.get('/data/table.html', function( data ){
-			$("#from-camden").append( data ) 
+		$($.get('./data/table.html', function( data ){
+			$("#from-camden").append( data )
 		var seen = {};
 		$('#from-camden tr').each(function() {
 		    var txt = $(this).text();
@@ -32,8 +32,17 @@
 		        $(this).remove();
 		    else
 		        seen[txt] = true;
-		})		
-	        }))
+			});
+		// injects sortable date string into 3rd column TDs
+		$('#from-camden td:nth-child(3)').each(function( ){
+			var d = new Date( $( this ).text() );
+			$( this ).attr("data-dstring", d.toISOString() ) });
+		// sort table on date string attributes
+		var stbody = document.querySelector('#from-camden');
+		[...stbody.children]
+			.sort((a,b)=>$('td:nth-child(3)',a).data('dstring')>$('td:nth-child(3)',b).data('dstring')?1:-1)
+			.forEach(node=>stbody.appendChild(node));
+        }) )
 	</script>
 	<title>South Hillsiders – a London neighbourhood</title>
 </head>
@@ -53,9 +62,9 @@
 	</section>
 	<section id="events">
 		<h1>Events</h1>
-		
+
 		<div class="block">
-			<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=dm11MTNqaHU2NzlnNWJ2MHJ1aG1nZGZmbW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=dWtfX2VuX2diQGhvbGlkYXkuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23EF6C00&amp;color=%23616161&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;hl=en_GB" style="border-width:0" frameborder="0" scrolling="no"></iframe>		
+			<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=dm11MTNqaHU2NzlnNWJ2MHJ1aG1nZGZmbW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=dWtfX2VuX2diQGhvbGlkYXkuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23EF6C00&amp;color=%23616161&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;hl=en_GB" style="border-width:0" frameborder="0" scrolling="no"></iframe>
 			<p>
 				You can <a href="https://calendar.google.com/calendar/embed?src=vmu13jhu679g5bv0ruhmgdffmo%40group.calendar.google.com&ctz=Europe%2FLondon">subscribe to this calendar</a>.
 			</p>
@@ -64,7 +73,7 @@
 		<div class="block">
 			<h2>Midsummer Night Picnic</h2>
 			<p>
-				We hold a Midsummer Night Picnic at a secret location on Hampstead Heath 
+				We hold a Midsummer Night Picnic at a secret location on Hampstead Heath
 				on the night closest to the summer solstice.
 			</p>
 		</div>
@@ -72,8 +81,8 @@
 		<div class="block">
 			<h2>Street drinking</h2>
 			<p>
-				We hold occasional Street Drinks in South Hill Park, 
-				and currently Porchside Drinks outside some home . 
+				We hold occasional Street Drinks in South Hill Park,
+				and currently Porchside Drinks outside some home .
 				Two metres apart, please!
 			</p>
 		</div>
@@ -96,12 +105,12 @@
 				Our email list has over 300 members.
 			</p>
 			<p>
-				Write with your name and street address to 
+				Write with your name and street address to
 				<a href="mailto:admins@hillsiders.org">admins@hillsiders.org</a>
 				if you would like to be on the list.
 			</p>
 			<p>
-				Members can see the message archive at 
+				Members can see the message archive at
 				<a href="https://list.hillsiders.org">list.hillsiders.org</a>.
 			</p>
 		</div>
@@ -130,49 +139,49 @@
 		<p>
 			Local groups with their own email lists.
 		</p>
-		
+
 		<div class="block">
 			<h2>Hills Admins</h2>
 			<p>
 				A weekly webclass learning to code web sites.
 				(We maintain this one.)
-				No prior experience necessary. 
+				No prior experience necessary.
 			</p>
 			<p>
-				We are using text editors, command shells, 
+				We are using text editors, command shells,
 				HTML, CSS, JavaScript,
-				Git and GitHub. 
+				Git and GitHub.
 				It’s beginning to make sense.
 			<p>
-				Write to our 
+				Write to our
 				<a href="mailto:sjt@hillsiders.org">mentor</a>
 				to learn more.
 			</p>
 		</div>
-		
+
 		<div class="block">
 			<h2>Hills Angels</h2>
 			<p>
 				A weekly social bike ride to get a little air and exercise
 				and learn quiet routes around London: for example, to Regents Park,
-				Bankside, Hackney Marshes, Battersea Park, 
+				Bankside, Hackney Marshes, Battersea Park,
 				or just over to London Fields for coffee.
 			</p>
 			<p>
-				Write to our 
+				Write to our
 				<a href="mailto:sjt@hillsiders.org">mentor</a>
 				to learn more.
 			</p>
 		</div>
-		
+
 		<div class="block">
 			<h2>South End Green XR</h2>
 			<p>
-				The local chapter of the 
+				The local chapter of the
 				<a href="https://rebellion.earth/">Extinction Rebellion</a>.
 			</p>
 			<p>
-				Write to our 
+				Write to our
 				<a href="mailto:admins@hillsiders.org">admins</a>
 				to learn more.
 			</p>
@@ -185,17 +194,17 @@
 				marked as high-risk to manage whatever needs managing.
 			</p>
 			<p>
-				If you can help, contact us at 
+				If you can help, contact us at
 				<a href="mailto:southendgreen.suppport@gmail.com">southendgreen.suppport@gmail.com</a>.
 			</p>
 			<p>
-				If you are in the high-risk group and sheltering, please notify 
+				If you are in the high-risk group and sheltering, please notify
 				<a href="mailto:seg-support-requests@googlegroups.com">seg-support-requests@googlegroups.com</a>
 				– regardless of whether you need or expect to need help.
 			</p>
 			<p>
-				Circumstances or rules change rapidly. 
-				We must ensure we have volunteers ready 
+				Circumstances or rules change rapidly.
+				We must ensure we have volunteers ready
 				for everyone who might need help before this is all over.
 		</div>
 
@@ -206,7 +215,7 @@
 				which is a designated biodiversity corridor.
 			</p>
 			<p>
-				Write to our 
+				Write to our
 				<a href="mailto:admins@hillsiders.org">admins</a>
 				to learn more.
 			</p>
@@ -216,8 +225,8 @@
 			<h2>South Hill Singers</h2>
 			<p>
 				Meet fortnightly for a singalong.
-				We are terrible, but we do not care. We have fun. 
-				For details, contact 
+				We are terrible, but we do not care. We have fun.
+				For details, contact
 				<a href="mailto:pmcastle19@gmail.com">Pam Castle</a>.
 			</p>
 		</div>
@@ -238,7 +247,7 @@
 		</div>
 
 		<p>
-			We are in the Hampstead Town ward of the 
+			We are in the Hampstead Town ward of the
 			<a href="https://camden.gov.uk">London Borough of Camden</a>,
 			represented by three councillors.
 		</p>
