@@ -21,30 +21,11 @@
 	<meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" type="text/css" href="style/styles.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
-		$($.get('./data/table.html', function( data ){
-			$("#from-camden").append( data )
-		var seen = {};
-		$('#from-camden tr').each(function() {
-		    var txt = $(this).text();
-		    if (seen[txt])
-		        $(this).remove();
-		    else
-		        seen[txt] = true;
-			});
-		// injects sortable date string into 3rd column TDs
-		$('#from-camden td:nth-child(3)').each(function( ){
-			var d = new Date( $( this ).text() );
-			$( this ).attr("data-dstring", d.toISOString() ) });
-		// sort table on date string attributes
-		var stbody = document.querySelector('#from-camden');
-		[...stbody.children]
-			.sort((a,b)=>$('td:nth-child(3)',a).data('dstring')>$('td:nth-child(3)',b).data('dstring')?1:-1)
-			.forEach(node=>stbody.appendChild(node));
-        }) )
-	</script>
-	<title>South Hillsiders – a London neighbourhood</title>
+<!-- 	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="./parking-jquery.js"></script>
+ -->	
+ 	<title>South Hillsiders – a London neighbourhood</title>
 </head>
 <body>
 	<div id="banner">
@@ -304,5 +285,6 @@
 		</div>
 
 	</section>
+	<script src="parking-es6.js"></script>
 </body>
 </html>
