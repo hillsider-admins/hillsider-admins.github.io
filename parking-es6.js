@@ -19,17 +19,18 @@ req.onload = function() {
 			    else {
 			        seen[txt] = true; // seen this one now
 			    	let d = new Date( sdn.textContent );
-			    	// insert data attribute with sortable datestring
-		    		sdn.setAttribute( "data-dstring", d.toISOString()  );
+			    	// insert data attribute data-dstring with sortable string
+		    		sdn.setAttribute( "data-dstring", d.toISOString() );
 		    	}
 			});
+		// new array without removed nodes
 		[...stbody.children]
 			.sort(function(a,b){
-				var adate = a.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
-				var bdate = b.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
+				let adate = a.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
+				let bdate = b.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
 				return adate>bdate ? 1 : -1;
 			})
-			.forEach(node=>stbody.appendChild(node)); // simplified function syntax
+			.forEach(tr=>stbody.appendChild(tr)); // simplified function syntax
 	}
 };
 req.send();
