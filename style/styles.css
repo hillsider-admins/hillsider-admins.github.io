@@ -107,6 +107,12 @@ section {
 #parking-suspensions th {
 	padding: 0.2em 1em;
 }
+#parking-suspensions .active {
+	color: darkred;
+}
+#parking-suspensions .impending {
+	color: navy;
+}
 
 @media screen and (min-width: 1000px) {
 	.grid-container {
@@ -122,3 +128,4 @@ section {
 	  padding: 20px 0;
 	}
 }
+
