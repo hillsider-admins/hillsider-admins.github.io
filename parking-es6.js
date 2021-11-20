@@ -8,6 +8,9 @@ req.onload = function() {
 		console.log('Table data received');
 		let stbody = document.querySelector('#from-camden'); // suspensions table body
 		stbody.insertAdjacentHTML('afterbegin', req.response);
+		let now = new Date();
+		let tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // midnight tonight
+		let dat = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); // day after tomorrow
 		// remove duplicates, insert sortable datestrings
 		let seen = {};
 		[...stbody.children]
@@ -18,9 +21,14 @@ req.onload = function() {
 			        tr.remove();
 			    else {
 			        seen[txt] = true; // seen this one now
-			    	let d = new Date( sdn.textContent );
+			    	let sd = new Date( sdn.textContent );
 			    	// insert data attribute data-dstring with sortable string
-		    		sdn.setAttribute( "data-dstring", d.toISOString() );
+		    		sdn.setAttribute( "data-dstring", sd.toISOString() );
+		    		// set classes for active and impending suspensions
+		    		if ( sd < tmw )
+		    			tr.setAttribute( 'class', 'active' );
+			    	else if ( sd < dat )
+			    		tr.setAttribute( 'class', 'impending' );
 		    	}
 			});
 		// new array without removed nodes
