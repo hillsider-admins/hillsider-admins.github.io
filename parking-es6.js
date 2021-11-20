@@ -9,8 +9,8 @@ req.onload = function() {
 		let stbody = document.querySelector('#from-camden'); // suspensions table body
 		stbody.insertAdjacentHTML('afterbegin', req.response);
 		let now = new Date();
-		let tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // midnight tonight
-		let dat = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); // day after tomorrow
+		let tonight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // midnight tonight
+		let soon = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); // day after tomorrow
 		// remove duplicates, insert sortable datestrings
 		let seen = {};
 		[...stbody.children]
@@ -25,9 +25,9 @@ req.onload = function() {
 			    	// insert data attribute data-dstring with sortable string
 		    		sdn.setAttribute( "data-dstring", sd.toISOString() );
 		    		// set classes for active and impending suspensions
-		    		if ( sd < tmw )
+		    		if ( sd < tonight )
 		    			tr.setAttribute( 'class', 'active' );
-			    	else if ( sd < dat )
+			    	else if ( sd < soon )
 			    		tr.setAttribute( 'class', 'impending' );
 		    	}
 			});
