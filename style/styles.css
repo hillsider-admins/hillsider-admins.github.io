@@ -108,10 +108,12 @@ section {
 	padding: 0.2em 1em;
 }
 #parking-suspensions .active {
-	color: darkred;
+	color: crimson;
+    font-weight: 600;
 }
 #parking-suspensions .impending {
-	color: navy;
+	color: blue;
+    font-weight: 600;
 }
 
 @media screen and (min-width: 1000px) {
