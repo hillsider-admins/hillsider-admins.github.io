@@ -63,29 +63,12 @@ req.onload = () => {
 		    		sdn.setAttribute( "data-dstring", d.toISOString() );
 		    	}
 			});
-		// new array of remaining nodes
-		// [...stbody.children]
-		// 	.sort( (a,b) => {
-		// 		let adate = a.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
-		// 		let bdate = b.querySelector( 'td:nth-child(3)' ).getAttribute( 'data-dstring' );
-		// 		return adate>bdate ? -1 : 1;
-		// 	})
-		// 	.sort( (a,b) => {
-		// 		let astreet = a.querySelector( 'td:nth-child(2)' ).textContent;
-		// 		let bstreet = b.querySelector( 'td:nth-child(2)' ).textContent;
-		// 		return astreet>bstreet ? 1 : -1;
-		// 	})
-		// 	.forEach( tr => {
-		// 		stbody.appendChild(tr); // table
-		// 		let obj = parseRow(tr);
-		// 		let li = obj['period']+': '+obj['street']+', '+obj['location'];
-		// 		li = '<li title="'+obj['reference']+': '+obj['reason']+'">'+li+'</li>';
-		// 		stlist.insertAdjacentHTML('beforeend', li);
-		// 	} );
 		let listItem = (obj) => {
-			let li = obj['period']+': '+obj['street']+', '+obj['location'];
-			return '<li title="'+obj['reference']+': '+obj['reason']+'">'+li+'</li>';
+			let li = obj['period']+': '+obj['location']+' ('+obj['reason'].toLowerCase()+')';
+			return '<li title="'+obj['reference']+'">'+li+'</li>';
+			// return '<li title="'+obj['reference']+': '+obj['reason']+'">'+li+'</li>';
 		};
+		let ul = '';
 		[...stbody.children]
 			.map( tr => {return parseRow(tr);})
 			.sort( (a,b) => {
@@ -94,15 +77,14 @@ req.onload = () => {
 				return ( a['street']+aiso ) > ( b['street']+biso ) ? 1 : -1;
 			})
 			.forEach( (obj,i,arr) => {
-				console.log('array index ',i.toString());
 				if ( i == 0 ) { // very beginning
 					stlist.insertAdjacentHTML('beforeend', '<h3>' + obj['street'] + '</h3>');
-					let ul = '<ul>' + listItem(obj);
+					ul = '<ul>' + listItem(obj);
 					// write heading, open list, write a LI
 				} else if ( obj['street'] != arr[i-1]['street'] ) { // new street
 					stlist.insertAdjacentHTML('beforeend', ul + '</ul>'); // close UL and write it
 					stlist.insertAdjacentHTML('beforeend', '<h3>' + obj['street'] + '</h3>'); // new street heading
-					let ul = '<ul>' + listItem(obj);
+					ul = '<ul>' + listItem(obj);
 				} else if ( i < arr.length-1 ) {
 					ul = ul + listItem(obj);  // write a LI
 				} else { // last item
