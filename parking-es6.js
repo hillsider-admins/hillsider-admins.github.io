@@ -52,61 +52,48 @@ req.onload = () => {
 		let seen = {};
 		[...stbody.children]
 			.forEach( tr => { //iterate on the list of TR nodes
-			    let sdn = tr.querySelector( 'td:nth-child(3)' ); // start-date node
+			    let mtd = tr.querySelector( 'td:nth-child(2)' ); // any more TDs?
 				let txt = tr.textContent;
-			    if ( seen[txt] || !sdn ) // if duplicate or null
+			    if ( seen[txt] || !mtd ) // if duplicate or null
 			        tr.remove();
 			    else {
 			        seen[txt] = true; // seen this one now
-			    	let d = new Date( sdn.textContent );
-			    	// insert data attribute data-dstring with sortable string
-		    		sdn.setAttribute( "data-dstring", d.toISOString() );
 		    	}
 			});
-		let listItem = (obj) => {
-			let li = obj['period']+': '+obj['location']+' ('+obj['reason'].toLowerCase()+')';
-			return '<li title="'+obj['reference']+'">'+li+'</li>';
-			// return '<li title="'+obj['reference']+': '+obj['reason']+'">'+li+'</li>';
-		};
-		let ul = '';
-		let sn = ["Nassington Road", "Parliament Hill", "South Hill Park", "Tanza Road"]; // street names
-		let sl = [ [],[],[],[] ]; // street lists
-		[...stbody.children]
-			.map( tr => {return parseRow(tr);})
-			.sort( (a,b) => {
-				let adate = new Date(a['start']), bdate = new Date(b['start']);
-				let aiso =  adate.toISOString(), biso = bdate.toISOString();
-				return ( a['street']+aiso ) > ( b['street']+biso ) ? 1 : -1;
-			})
-			.forEach( obj => {
-				let i = sn.indexOf(obj['street']);  // find street
-				if( i == -1) {
-					console.log('***ERROR: unidentified street' + obj['street']);
-				} else {
-					sl[i].push(obj);
+		if( [...stbody.children].length ){
+			let listItem = (obj) => {
+				let li = obj['period']+': '+obj['location']+' ('+obj['reason'].toLowerCase()+')';
+				return '<li title="'+obj['reference']+'">'+li+'</li>';
+				// return '<li title="'+obj['reference']+': '+obj['reason']+'">'+li+'</li>';
+			};
+			let ul = '';
+			let sn = ["Nassington Road", "Parliament Hill", "South Hill Park", "Tanza Road"]; // street names
+			let sl = [ [],[],[],[] ]; // street lists
+			[...stbody.children]
+				.map( tr => {return parseRow(tr);})
+				.sort( (a,b) => {
+					let adate = new Date(a['start']), bdate = new Date(b['start']);
+					let aiso =  adate.toISOString(), biso = bdate.toISOString();
+					return ( a['street']+aiso ) > ( b['street']+biso ) ? 1 : -1;
+				})
+				.forEach( obj => {
+					let i = sn.indexOf(obj['street']);  // find street
+					if( i == -1) {
+						console.log('***ERROR: unidentified street' + obj['street']);
+					} else {
+						sl[i].push(obj);
+					}
+				});
+			sl.forEach( (list,i) => {
+				if( list.length ) {
+					let ul = '';
+					list.forEach( obj => {ul += '<li>'+listItem(obj)+'</li>';});
+					stlist.insertAdjacentHTML('beforeend', '<h3>'+sn[i]+'</h3>' + '<ul>'+ul+'</ul>');
 				}
-			// .forEach( (obj,i,arr) => {
-				// if ( i == 0 ) { // very beginning
-				// 	stlist.insertAdjacentHTML('beforeend', '<h3>' + obj['street'] + '</h3>');
-				// 	ul = '<ul>' + listItem(obj);
-				// 	// write heading, open list, write a LI
-				// } else if ( obj['street'] != arr[i-1]['street'] ) { // new street
-				// 	stlist.insertAdjacentHTML('beforeend', ul + '</ul>'); // close UL and write it
-				// 	stlist.insertAdjacentHTML('beforeend', '<h3>' + obj['street'] + '</h3>'); // new street heading
-				// 	ul = '<ul>' + listItem(obj);
-				// } else if ( i < arr.length-1 ) {
-				// 	ul = ul + listItem(obj);  // write a LI
-				// } else { // last item
-				// 	stlist.insertAdjacentHTML('beforeend', ul + listItem(obj) + '</ul>'); // close UL and write it
-				// }
 			});
-		sl.forEach( (list,i) => {
-			if( list.length ) {
-				let ul = '';
-				list.forEach( obj => {ul += '<li>'+listItem(obj)+'</li>';});
-				stlist.insertAdjacentHTML('beforeend', '<h3>'+sn[i]+'</h3>' + '<ul>'+ul+'</ul>');
-			}
-		});
+		} else {
+			stlist.insertAdjacentHTML('beforeend', '<p>No suspensions current or impending</p>');
+		}
 		document.getElementById('parking-suspensions').style.display = 'none';
 	}
 };
