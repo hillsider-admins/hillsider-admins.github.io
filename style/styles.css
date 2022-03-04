@@ -44,7 +44,7 @@ body {
 	font-size: 18px;
 	line-height: 1.4rem;
 }
-h1, h2, h3, li {
+h1, h2, h3 {
 	color: #003300;
 	font-family: Optima, serif;
 	margin-bottom: .3em;
