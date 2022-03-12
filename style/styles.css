@@ -44,7 +44,7 @@ body {
 	font-size: 18px;
 	line-height: 1.4rem;
 }
-h1, h2, h3, li {
+h1, h2, h3 {
 	color: #003300;
 	font-family: Optima, serif;
 	margin-bottom: .3em;
@@ -75,12 +75,11 @@ em {
 	font-style: italic;
 }
 /* layout */
-p {
-	max-width: 40rem;
-}
 section {
-	border: .5px solid black;
+	border-top: .5px solid black;
 	padding: 1rem;
+	margin: 0 auto;
+	max-width: 40rem;
 }
 
 /*Camden*/
@@ -130,4 +129,3 @@ section {
 	  padding: 20px 0;
 	}
 }
-
