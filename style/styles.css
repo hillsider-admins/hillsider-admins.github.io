@@ -71,6 +71,9 @@ a {
 	font-weight: 600;
 	text-decoration: none;
 }
+b, strong {
+	font-weight: bold;
+}
 em {
 	font-style: italic;
 }
